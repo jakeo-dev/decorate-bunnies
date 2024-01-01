@@ -155,7 +155,7 @@ function changeSize() {
 }
 
 function changeRotation() {
-    defRot += 10;
+    defRot += 15;
     document.getElementById('rotationBtn').innerText = 'Rotation: ' + defRot + '°';
 
     if (defRot >= 360) {
