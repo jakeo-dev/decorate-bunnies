@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Decorate Bunnies</title>
+    <link href='https://bunnies.jakeo.dev/images/red-bunny-2022.png' rel='shortcut icon' type='image/ico'>
+
+    <link href='style.css' rel='stylesheet'>
+    <script src='https://kit.fontawesome.com/57c0dd6a0a.js' crossorigin='anonymous'></script>
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap' rel='stylesheet'>
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/tota11y/0.1.6/tota11y.min.js' crossorigin='anonymous' referrerpolicy='no-referrer'></script> -->
+    <script async src='https://cdn.splitbee.io/sb.js'></script>
+
+    <meta property='og:title' content='Decorate Bunnies'>
+    <meta property='og:description' content='Decorate with some colorful bunnies.'>
+    <meta name='theme-color' content='#227322'>
+    <meta property='og:image' content='https://bunnies.jakeo.dev/images/red-bunny-2022.png'>
+</head>
+
+<body class='bg-white font-BalsamiqSans h-full overflow-hidden m-0'>
+
+    <div id='bunnySelector'
+        class='hidden md:block bg-gray-100/90 border-x-2 md:border-gray-400/90 absolute h-full overflow-y-auto z-[60] px-3'>
+
+        <button class='md:hidden absolute text-xl text-gray-600 top-0 right-0 m-5' onclick='closeSelector()'><i
+                class='fa-regular fa-circle-xmark' aria-label='Close' title='Close'></i></button>
+
+        <button class='selectBunny text-gray-600 bg-lightGreen/90 border-gray-400/90 pb-1.5' id='random'
+            onclick='select("random.png")'>
+            <i class='fa-solid fa-shuffle text-[2.55rem]' aria-label='Random bunny' title='Random bunny'></i>
+        </button>
+
+        <hr class='border-gray-400/90 border m-2 w-5/6'>
+
+        <div id='bunnyDiv' class='dDiv block'>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='red-bunny-2022'
+                onclick='select("red-bunny-2022")'> <img id='https://bunnies.jakeo.dev/images/red-bunny-2022.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/red-bunny-2022.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='orange-bunny-2022' onclick='select("orange-bunny-2022")'> <img
+                    id='https://bunnies.jakeo.dev/images/orange-bunny-2022.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/orange-bunny-2022.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='yellow-bunny-2022' onclick='select("yellow-bunny-2022")'> <img
+                    id='https://bunnies.jakeo.dev/images/yellow-bunny-2022.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/yellow-bunny-2022.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='green-bunny-2022'
+                onclick='select("green-bunny-2022")'> <img id='https://bunnies.jakeo.dev/images/green-bunny-2022.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/green-bunny-2022.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='turquoise-bunny-2022' onclick='select("turquoise-bunny-2022")'> <img
+                    id='https://bunnies.jakeo.dev/images/turquoise-bunny-2022.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/turquoise-bunny-2022.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='blue-bunny-2022'
+                onclick='select("blue-bunny-2022")'> <img id='https://bunnies.jakeo.dev/images/blue-bunny-2022.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/blue-bunny-2022.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='purple-bunny-2022' onclick='select("purple-bunny-2022")'> <img
+                    id='https://bunnies.jakeo.dev/images/purple-bunny-2022.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/purple-bunny-2022.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='pink-bunny-2022'
+                onclick='select("pink-bunny-2022")'> <img id='https://bunnies.jakeo.dev/images/pink-bunny-2022.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/pink-bunny-2022.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='solid-red-bunny'
+                onclick='select("solid-red-bunny")'> <img id='https://bunnies.jakeo.dev/images/solid-red-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/solid-red-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-orange-bunny' onclick='select("solid-orange-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-orange-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-orange-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-yellow-bunny' onclick='select("solid-yellow-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-yellow-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-yellow-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-green-bunny' onclick='select("solid-green-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-green-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-green-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-turquoise-bunny' onclick='select("solid-turquoise-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-turquoise-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-turquoise-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='solid-blue-bunny'
+                onclick='select("solid-blue-bunny")'> <img id='https://bunnies.jakeo.dev/images/solid-blue-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/solid-blue-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-purple-bunny' onclick='select("solid-purple-bunny")'>
+                <img id='https://bunnies.jakeo.dev/images/solid-purple-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-purple-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='solid-pink-bunny'
+                onclick='select("solid-pink-bunny")'> <img id='https://bunnies.jakeo.dev/images/solid-pink-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/solid-pink-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='blue-gray-bunny'
+                onclick='select("blue-gray-bunny")'> <img id='https://bunnies.jakeo.dev/images/blue-gray-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/blue-gray-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='minecraft-bunny'
+                onclick='select("minecraft-bunny")'> <img id='https://bunnies.jakeo.dev/images/minecraft-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/minecraft-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='earth-bunny'
+                onclick='select("earth-bunny")'> <img id='https://bunnies.jakeo.dev/images/earth-bunny.png' width='60'
+                    height='60' src='https://bunnies.jakeo.dev/images/earth-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='american-bunny'
+                onclick='select("american-bunny")'> <img id='https://bunnies.jakeo.dev/images/american-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/american-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='blurple-bunny'
+                onclick='select("blurple-bunny")'> <img id='https://bunnies.jakeo.dev/images/blurple-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/blurple-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='christmas-bunny'
+                onclick='select("christmas-bunny")'> <img id='https://bunnies.jakeo.dev/images/christmas-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/christmas-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='halloween-bunny'
+                onclick='select("halloween-bunny")'> <img id='https://bunnies.jakeo.dev/images/halloween-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/halloween-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='dream-bunny'
+                onclick='select("dream-bunny")'> <img id='https://bunnies.jakeo.dev/images/dream-bunny.png' width='60'
+                    height='60' src='https://bunnies.jakeo.dev/images/dream-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='amogus-bunny'
+                onclick='select("amogus-bunny")'> <img id='https://bunnies.jakeo.dev/images/amogus-bunny.png' width='60'
+                    height='60' src='https://bunnies.jakeo.dev/images/amogus-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='pumpkin-head-bunny' onclick='select("pumpkin-head-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/pumpkin-head-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/pumpkin-head-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='original-thanksgiving-bunny' onclick='select("original-thanksgiving-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/original-thanksgiving-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/original-thanksgiving-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='santa-bunny'
+                onclick='select("santa-bunny")'> <img id='https://bunnies.jakeo.dev/images/santa-bunny.png' width='60'
+                    height='60' src='https://bunnies.jakeo.dev/images/santa-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='icy-bunny'
+                onclick='select("icy-bunny")'> <img id='https://bunnies.jakeo.dev/images/icy-bunny.png' width='60'
+                    height='60' src='https://bunnies.jakeo.dev/images/icy-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='new-years-bunny'
+                onclick='select("new-years-bunny")'> <img id='https://bunnies.jakeo.dev/images/new-years-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/new-years-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='leprechaun-bunny'
+                onclick='select("leprechaun-bunny")'> <img id='https://bunnies.jakeo.dev/images/leprechaun-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/leprechaun-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='gold-bunny'
+                onclick='select("gold-bunny")'> <img id='https://bunnies.jakeo.dev/images/gold-bunny.png' width='60'
+                    height='60' src='https://bunnies.jakeo.dev/images/gold-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='steam-bunny'
+                onclick='select("steam-bunny")'> <img id='https://bunnies.jakeo.dev/images/steam-bunny.png' width='60'
+                    height='60' src='https://bunnies.jakeo.dev/images/steam-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='easter-bunny-no-eggs' onclick='select("easter-bunny-no-eggs")'> <img
+                    id='https://bunnies.jakeo.dev/images/easter-bunny-no-eggs.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/easter-bunny-no-eggs.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-stripes-christmas-bunny' onclick='select("solid-stripes-christmas-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-stripes-christmas-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-stripes-christmas-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-gradient-blurple-bunny' onclick='select("solid-gradient-blurple-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-gradient-blurple-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-gradient-blurple-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-earth-bunny' onclick='select("solid-earth-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-earth-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-earth-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-gradient-orange-black-bunny' onclick='select("solid-gradient-orange-black-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-gradient-orange-black-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-gradient-orange-black-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-us-flag-bunny' onclick='select("solid-us-flag-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-us-flag-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-us-flag-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='potpourri-bunny-v4' onclick='select("potpourri-bunny-v4")'> <img
+                    id='https://bunnies.jakeo.dev/images/potpourri-bunny-v4.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/potpourri-bunny-v4.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='skeleton-bunny'
+                onclick='select("skeleton-bunny")'> <img id='https://bunnies.jakeo.dev/images/skeleton-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/skeleton-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='witch-bunny'
+                onclick='select("witch-bunny")'> <img id='https://bunnies.jakeo.dev/images/witch-bunny.png' width='60'
+                    height='60' src='https://bunnies.jakeo.dev/images/witch-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-gradient-yellow-blue-bunny' onclick='select("solid-gradient-yellow-blue-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-gradient-yellow-blue-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-gradient-yellow-blue-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-gradient-blue-gray-bunny' onclick='select("solid-gradient-blue-gray-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-gradient-blue-gray-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-gradient-blue-gray-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='sunny-bunny'
+                onclick='select("sunny-bunny")'> <img id='https://bunnies.jakeo.dev/images/sunny-bunny.png' width='60'
+                    height='60' src='https://bunnies.jakeo.dev/images/sunny-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-gradient-yellow-purple-bunny' onclick='select("solid-gradient-yellow-purple-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-gradient-yellow-purple-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-gradient-yellow-purple-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-gradient-blue-black-bunny' onclick='select("solid-gradient-blue-black-bunny")'> <img
+                    id='https://bunnies.jakeo.dev/images/solid-gradient-blue-black-bunny.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/solid-gradient-blue-black-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='bat-bunny'
+                onclick='select("bat-bunny")'> <img id='https://bunnies.jakeo.dev/images/bat-bunny.png' width='60'
+                    height='60' src='https://bunnies.jakeo.dev/images/bat-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='pilgrim-bunny'
+                onclick='select("pilgrim-bunny")'> <img id='https://bunnies.jakeo.dev/images/pilgrim-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/pilgrim-bunny.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='cornucopia-of-bunnies' onclick='select("cornucopia-of-bunnies")'> <img
+                    id='https://bunnies.jakeo.dev/images/cornucopia-of-bunnies.png' width='60' height='60'
+                    src='https://bunnies.jakeo.dev/images/cornucopia-of-bunnies.png'>
+            </button>
+
+            <button class='selectBunny hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90' id='snowman-bunny'
+                onclick='select("snowman-bunny")'> <img id='https://bunnies.jakeo.dev/images/snowman-bunny.png'
+                    width='60' height='60' src='https://bunnies.jakeo.dev/images/snowman-bunny.png'>
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class='hidden md:flex absolute z-[60] gap-3 m-3 transition-all' id='optionsDiv'>
+        <button
+            class='leading-none bg-gray-100/90 hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90 border-gray-400/90 border-2 text-gray-600 rounded-md px-2.5 py-1 transition-all'
+            onclick='toggleB()' id='hide'><i id='hideI' class='fa-solid fa-angle-left text-xl p-0 m-0'
+                aria-label='Hide/show menu' title='Hide/show menu'></i></button>
+        <button
+            class='leading-none text-lg bg-gray-100/90 hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90 border-gray-400/90 border-2 text-gray-600 rounded-md px-3 py-2 transition-all'
+            id='sizeBtn' onclick='changeSize()'>Size: Normal (1x)</button>
+        <button
+            class='leading-none text-lg bg-gray-100/90 hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90 border-gray-400/90 border-2 text-gray-600 rounded-md px-3 py-2 transition-all'
+            id='rotationBtn' onclick='changeRotation()'>Rotation: 0°</button>
+        <button
+            class='leading-none text-lg bg-gray-100/90 hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90 border-gray-400/90 border-2 text-gray-600 rounded-md px-3 py-2 transition-all'
+            id='randomSizeBtn' onclick='changeRandomSize()'>Randomized Size: Off</button>
+        <button
+            class='leading-none text-lg bg-gray-100/90 hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90 border-gray-400/90 border-2 text-gray-600 rounded-md px-3 py-2 transition-all'
+            id='randomRotBtn' onclick='changeRandomRot()'>Randomized Rotation: Off</button>
+        <button onclick='switchBg()' id='switchBg'
+            class='leading-none text-lg bg-gray-100/90 hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90 border-gray-400/90 border-2 text-gray-600 rounded-md px-3 py-2 transition-all'>Background</button>
+    </div>
+
+    <div id='canvases' class='relative'>
+
+        <canvas id='canvas5'
+            class='absolute top-0 right-0 z-50 opacity-50 active:opacity-60 transition-all cursor-pointer'>
+            <!-- hover canvas -->
+        </canvas>
+
+        <canvas id='canvas' class='absolute top-0 right-0 z-40'>
+            <!-- draw canvas -->
+        </canvas>
+
+        <canvas id='canvas4' class='absolute top-0 right-0'>
+            <!-- bg canvas -->
+        </canvas>
+
+    </div>
+
+</body>
+
+</html>
+
+<script src='script.js'></script>
