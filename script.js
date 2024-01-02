@@ -3,6 +3,7 @@ let defWidth = 96;
 let defRot = 0;
 let randomizedSize = false;
 let randomizedRot = false;
+let generating = false;
 
 let canvas = document.getElementById('canvas');
 let canvas4 = document.getElementById('canvas4');
@@ -199,12 +200,19 @@ let timeout2 = function () {
     }
 }
 
-let timer2;
+let timeout3 = function () {
+    ctx5.clearRect(0, 0, canvas.width, canvas.height);
+}
+
 let timer;
+let timer2;
+let timer3;
 window.addEventListener('mousemove', function () {
     clearTimeout(timer);
     clearTimeout(timer2);
+    clearTimeout(timer3);
     timer = setTimeout(timeout, 2000);
+    timer3 = setTimeout(timeout3, 2000);
 
     if (!document.getElementById('bunnySelector').classList.contains('md:block')) {
         document.getElementById('optionsDiv').classList.remove('opacity-50');
@@ -212,72 +220,110 @@ window.addEventListener('mousemove', function () {
     }
 }, false);
 
-function calcDistance(x1, y1, x2, y2) {
-    return Math.sqrt(((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2)));
-}
-
-let d = document.getElementById('https://bunnies.jakeo.dev/images/red-bunny-2022.png');
-let farEnough = false;
-point1 = [0, 0];
-
-canvas5.addEventListener('mousemove', function (event) {
-    ctx5.clearRect(0, 0, canvas.width, canvas.height);
-
-    let x = event.pageX - canvas.offsetLeft;
-    let y = event.pageY - canvas.offsetTop;
-
-    point2 = [x, y];
-
-    if (calcDistance(point1[0], point1[1], point2[0], point2[1]) > 15) {
-        farEnough = true;
-        /* ctx.beginPath();
-        ctx.arc(x, y, 50, 0, 2 * Math.PI);
-        ctx.stroke(); */
-    } else {
-        farEnough = false;
-    }
-
-    if (bImg == 'random.png') {
-        /* random selection */
-        if (farEnough) d = document.getElementById('https://bunnies.jakeo.dev/images/' + bunniesArray[Math.floor(Math.random() * bunniesArray.length)] + '.png');
-    } else {
-        /* specific selection */
-        d = document.getElementById('https://bunnies.jakeo.dev/images/' + bImg + '.png');
-    }
-
-    if (randomizedSize) {
-        const possibleSizes = [96, 128, 192, 256, 320, 384, 480];
-        defWidth = possibleSizes[Math.floor(Math.random() * possibleSizes.length)];
-        changeSize();
-    }
-
-    if (randomizedRot) {
-        defRot = Math.floor(Math.random() * 24) * 15;
-        changeRotation();
-    }
-
+let genTimeout = function () {
+    x = Math.floor(Math.random() * (canvas.width + 1));
+    y = Math.floor(Math.random() * (canvas.height + 1));
     finalX = x - defWidth / 2;
     finalY = y - defWidth / 2;
     finalW = defWidth;
     finalH = defWidth;
 
-    if (farEnough) point1 = point2;
-    if (document.getElementById('bunnySelector').classList.contains('md:block')) {
-        ctx5.translate(finalX + (finalW / 2), finalY + (finalH / 2));
-        ctx5.rotate(defRot * Math.PI / 180);
-        ctx5.drawImage(d, -finalW / 2, -finalH / 2, finalW, finalH);
-        ctx5.rotate(-defRot * Math.PI / 180);
-        ctx5.translate(-finalX - (finalW / 2), -finalY - (finalH / 2));
+    if (randomizedSize) randomSize();
+    if (randomizedRot) randomRot();
+    if (bImg == 'random.png') {
+        /* random selection */
+        d = document.getElementById('bunnies/' + bunniesArray[Math.floor(Math.random() * bunniesArray.length)] + '.png');
+    } else {
+        /* specific selection */
+        d = document.getElementById('bunnies/' + bImg + '.png');
+    }
+    place(ctx);
+
+    if (generating) genTimer = setTimeout(genTimeout, 50);
+}
+
+function toggleGen() {
+    if (document.getElementById('genBtn').innerText == 'Start Generation') {
+        genTimer = setTimeout(genTimeout, 50);
+        generating = true;
+        ctx5.clearRect(0, 0, canvas.width, canvas.height);
+        document.getElementById('genBtn').innerText = 'Stop Generation';
+    } else {
+        clearTimeout(genTimeout);
+        generating = false;
+        document.getElementById('genBtn').innerText = 'Start Generation';
+    }
+}
+
+function calcDistance(x1, y1, x2, y2) {
+    return Math.sqrt(((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2)));
+}
+
+let d = document.getElementById('bunnies/red-bunny-2022.png');
+let farEnough = false;
+point1 = [0, 0];
+
+canvas5.addEventListener('mousemove', function (event) {
+    if (!generating) {
+        ctx5.clearRect(0, 0, canvas.width, canvas.height);
+
+        let x = event.pageX - canvas.offsetLeft;
+        let y = event.pageY - canvas.offsetTop;
+
+        point2 = [x, y];
+
+        if (calcDistance(point1[0], point1[1], point2[0], point2[1]) > 15) {
+            farEnough = true;
+            /* ctx.beginPath();
+            ctx.arc(x, y, 50, 0, 2 * Math.PI);
+            ctx.stroke(); */
+        } else {
+            farEnough = false;
+        }
+
+        if (bImg == 'random.png') {
+            /* random selection */
+            if (farEnough) d = document.getElementById('bunnies/' + bunniesArray[Math.floor(Math.random() * bunniesArray.length)] + '.png');
+        } else {
+            /* specific selection */
+            d = document.getElementById('bunnies/' + bImg + '.png');
+        }
+
+        if (randomizedSize) randomSize();
+        if (randomizedRot) randomRot();
+
+        finalX = x - defWidth / 2;
+        finalY = y - defWidth / 2;
+        finalW = defWidth;
+        finalH = defWidth;
+
+        if (farEnough) point1 = point2;
+        place(ctx5);
     }
 }, false);
 
 canvas5.addEventListener('click', function () {
-    ctx.translate(finalX + (finalW / 2), finalY + (finalH / 2));
-    ctx.rotate(defRot * Math.PI / 180);
-    ctx.drawImage(d, -finalW / 2, -finalH / 2, finalW, finalH);
-    ctx.rotate(-defRot * Math.PI / 180);
-    ctx.translate(-finalX - (finalW / 2), -finalY - (finalH / 2));
+    place(ctx);
 }, false);
+
+function place(thisCtx) {
+    thisCtx.translate(finalX + (finalW / 2), finalY + (finalH / 2));
+    thisCtx.rotate(defRot * Math.PI / 180);
+    thisCtx.drawImage(d, -finalW / 2, -finalH / 2, finalW, finalH);
+    thisCtx.rotate(-defRot * Math.PI / 180);
+    thisCtx.translate(-finalX - (finalW / 2), -finalY - (finalH / 2));
+}
+
+function randomSize() {
+    const possibleSizes = [96, 128, 192, 256, 320, 384, 480];
+    defWidth = possibleSizes[Math.floor(Math.random() * possibleSizes.length)];
+    changeSize();
+}
+
+function randomRot() {
+    defRot = Math.floor(Math.random() * 24) * 15;
+    changeRotation();
+}
 
 let bunniesArray = [];
 
@@ -309,3 +355,10 @@ bImgButtons.forEach((selectBunny) => {
         selectBunny.classList.remove('active:enabled:bg-gray-300/90');
     });
 });
+
+function download() {
+    let link = document.createElement('a');
+    link.download = 'my-bunnies.png';
+    link.href = document.getElementById('canvas').toDataURL();
+    link.click();
+}
