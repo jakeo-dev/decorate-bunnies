@@ -61,17 +61,6 @@ function switchBg() {
     }
 }
 
-window.onclick = function (event) {
-    if (event.target == document.getElementById('modal')) {
-        closeModal();
-    }
-}
-
-function closeModal() {
-    document.getElementById('modal').classList.add('hidden');
-    document.getElementById('modal').classList.remove('flex');
-}
-
 let bButtons = document.querySelectorAll('.bunnyB');
 bButtons.forEach((bunnyB) => {
     bunnyB.addEventListener('click', () => {
@@ -95,6 +84,12 @@ bButtons.forEach((bunnyB) => {
 
 window.onload = function () {
     document.getElementById('optionsDiv').style.left = document.getElementById('bunnySelector').offsetWidth + 'px';
+    document.getElementById('optionsDiv').style.top = document.getElementById('decorDock').offsetHeight + 'px';
+
+    document.getElementById('bunnySelector').style.top = document.getElementById('decorDock').offsetHeight + 'px';
+    document.getElementById('bunnySelector').style.paddingBottom = document.getElementById('decorDock').offsetHeight + 'px';
+
+    switchSelected();
 }
 
 function closeSelector() {
@@ -113,6 +108,8 @@ function toggleB() {
 function hideB() {
     document.getElementById('bunnySelector').classList.remove('md:block');
     document.getElementById('bunnySelector').classList.add('hidden');
+    document.getElementById('decorDock').classList.remove('md:block');
+    document.getElementById('decorDock').classList.add('hidden');
     document.getElementById('optionsDiv').style.top = '0px';
     document.getElementById('optionsDiv').style.left = '0px';
     document.getElementById('optionsDiv').classList.add('hover:opacity-100');
@@ -124,7 +121,10 @@ function hideB() {
 function showB() {
     document.getElementById('bunnySelector').classList.remove('hidden');
     document.getElementById('bunnySelector').classList.add('md:block');
+    document.getElementById('decorDock').classList.remove('hidden');
+    document.getElementById('decorDock').classList.add('md:block');
     document.getElementById('optionsDiv').style.left = document.getElementById('bunnySelector').offsetWidth + 'px';
+    document.getElementById('optionsDiv').style.top = document.getElementById('decorDock').offsetHeight + 'px';
     document.getElementById('optionsDiv').classList.remove('hover:opacity-100');
     document.getElementById('hideI').classList.remove('fa-angle-right');
     document.getElementById('hideI').classList.add('fa-angle-left');
@@ -212,7 +212,7 @@ window.addEventListener('mousemove', function () {
     clearTimeout(timer2);
     clearTimeout(timer3);
     timer = setTimeout(timeout, 2000);
-    timer3 = setTimeout(timeout3, 2000);
+    timer3 = setTimeout(timeout3, 3000);
 
     if (!document.getElementById('bunnySelector').classList.contains('md:block')) {
         document.getElementById('optionsDiv').classList.remove('opacity-50');
@@ -272,7 +272,7 @@ canvas5.addEventListener('mousemove', function (event) {
 
         point2 = [x, y];
 
-        if (calcDistance(point1[0], point1[1], point2[0], point2[1]) > 15) {
+        if (calcDistance(point1[0], point1[1], point2[0], point2[1]) > 10) {
             farEnough = true;
             /* ctx.beginPath();
             ctx.arc(x, y, 50, 0, 2 * Math.PI);
@@ -326,17 +326,27 @@ function randomRot() {
 }
 
 let bunniesArray = [];
+let currentType = 'selectBunny';
 
-for (i = 0; i < document.getElementsByClassName('selectBunny').length; i++) {
-    bunniesArray.push(document.getElementsByClassName('selectBunny')[i].id);
+function switchSelected() {
+    bunniesArray = [];
+    currentType = document.getElementById('switchSelected').value;
+    for (i = 0; i < document.getElementsByClassName('selectBunny').length; i++) {
+        document.getElementsByClassName('selectBunny')[i].classList.add('hidden');
+    }
+    for (i = 0; i < document.getElementsByClassName(currentType).length; i++) {
+        bunniesArray.push(document.getElementsByClassName(currentType)[i].id);
+        document.getElementsByClassName(currentType)[i].classList.remove('hidden');
+    }
+    bunniesArray = bunniesArray.filter(e => e !== 'random');
+    document.getElementById('random').classList.remove('hidden');
 }
-bunniesArray.splice(0, 1);
 
 function select(selectedB) {
     bImg = selectedB;
 }
 
-let bImgButtons = document.querySelectorAll('.selectBunny');
+let bImgButtons = document.querySelectorAll('.' + currentType);
 bImgButtons.forEach((selectBunny) => {
     selectBunny.addEventListener('click', () => {
 
