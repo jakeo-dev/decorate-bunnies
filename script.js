@@ -259,12 +259,21 @@ function calcDistance(x1, y1, x2, y2) {
     return Math.sqrt(((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2)));
 }
 
+let doneLoading = false;
+// i have no idea how this works
+// https://stackoverflow.com/a/60949881
+Promise.all(Array.from(document.images).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))).then(() => {
+    doneLoading = true;
+});
+
 let d = document.getElementById('bunnies/red-bunny-2022.png');
 let farEnough = false;
 point1 = [0, 0];
 
 canvas5.addEventListener('mousemove', function (event) {
     if (!generating) {
+        if (!doneLoading) switchSelected();
+
         ctx5.clearRect(0, 0, canvas.width, canvas.height);
 
         let x = event.pageX - canvas.offsetLeft;
@@ -303,6 +312,7 @@ canvas5.addEventListener('mousemove', function (event) {
 }, false);
 
 canvas5.addEventListener('click', function () {
+    if (!doneLoading) switchSelected();
     place(ctx);
 }, false);
 
