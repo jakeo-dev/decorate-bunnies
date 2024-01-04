@@ -1,5 +1,5 @@
 let bImg = 'random.png';
-let defWidth = 96;
+let defWidth = 192;
 let defRot = 0;
 let randomizedSize = false;
 let randomizedRot = false;
@@ -116,6 +116,7 @@ function hideB() {
     document.getElementById('optionsDiv').classList.add('hover:opacity-100');
     document.getElementById('hideI').classList.remove('fa-angle-left');
     document.getElementById('hideI').classList.add('fa-angle-right');
+    document.getElementById('hideBtn').classList.add('border-l-2');
     ctx5.clearRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -129,30 +130,45 @@ function showB() {
     document.getElementById('optionsDiv').classList.remove('hover:opacity-100');
     document.getElementById('hideI').classList.remove('fa-angle-right');
     document.getElementById('hideI').classList.add('fa-angle-left');
+    document.getElementById('hideBtn').classList.remove('border-l-2');
 }
 
 function changeSize() {
     if (defWidth == 96) {
         defWidth = 128;
-        document.getElementById('sizeBtn').innerText = 'Size: Large (1.3x)';
+        document.getElementById('sizeBtn').innerText = 'Size: Small (0.67x)';
     } else if (defWidth == 128) {
         defWidth = 192;
-        document.getElementById('sizeBtn').innerText = 'Size: Huge (2x)';
+        document.getElementById('sizeBtn').innerText = 'Size: Normal (1x)';
     } else if (defWidth == 192) {
         defWidth = 256;
-        document.getElementById('sizeBtn').innerText = 'Size: Gigantic (2.7x)';
+        document.getElementById('sizeBtn').innerText = 'Size: Large (1.3x)';
     } else if (defWidth == 256) {
         defWidth = 320;
-        document.getElementById('sizeBtn').innerText = 'Size: Enormous (3.3x)';
+        document.getElementById('sizeBtn').innerText = 'Size: Huge (1.7x)';
     } else if (defWidth == 320) {
         defWidth = 384;
-        document.getElementById('sizeBtn').innerText = 'Size: Colossal (4x)';
+        document.getElementById('sizeBtn').innerText = 'Size: Gigantic (2x)';
     } else if (defWidth == 384) {
         defWidth = 480;
-        document.getElementById('sizeBtn').innerText = 'Size: ????? (5x)';
+        document.getElementById('sizeBtn').innerText = 'Size: Colossal (2.5x)';
     } else if (defWidth == 480) {
         defWidth = 96;
-        document.getElementById('sizeBtn').innerText = 'Size: Normal (1x)';
+        document.getElementById('sizeBtn').innerText = 'Size: Tiny (0.5x)';
+    }
+
+    if (!generating) {
+        if (!doneLoading) switchSelected();
+
+        ctx5.clearRect(0, 0, canvas.width, canvas.height);
+
+        finalX = x - defWidth / 2;
+        finalY = y - defWidth / 2;
+        finalW = defWidth;
+        finalH = defWidth;
+
+        place(ctx5);
+        if (following) place(ctx);
     }
 }
 
@@ -164,25 +180,67 @@ function changeRotation() {
         defRot = 0;
         document.getElementById('rotationBtn').innerText = 'Rotation: 0°';
     }
+
+    if (!generating) {
+        if (!doneLoading) switchSelected();
+
+        ctx5.clearRect(0, 0, canvas.width, canvas.height);
+
+        finalX = x - defWidth / 2;
+        finalY = y - defWidth / 2;
+        finalW = defWidth;
+        finalH = defWidth;
+
+        place(ctx5);
+        if (following) place(ctx);
+    }
 }
 
 function changeRandomSize() {
     if (!randomizedSize) {
         randomizedSize = true;
-        document.getElementById('randomSizeBtn').innerText = 'Randomized Size: On';
+        document.getElementById('randomSizeBtn').innerText = 'Random Size: On';
     } else if (randomizedSize) {
         randomizedSize = false;
-        document.getElementById('randomSizeBtn').innerText = 'Randomized Size: Off';
+        document.getElementById('randomSizeBtn').innerText = 'Random Size: Off';
+    }
+
+    if (!generating) {
+        if (!doneLoading) switchSelected();
+
+        ctx5.clearRect(0, 0, canvas.width, canvas.height);
+
+        finalX = x - defWidth / 2;
+        finalY = y - defWidth / 2;
+        finalW = defWidth;
+        finalH = defWidth;
+
+        place(ctx5);
+        if (following) place(ctx);
     }
 }
 
 function changeRandomRot() {
     if (!randomizedRot) {
         randomizedRot = true;
-        document.getElementById('randomRotBtn').innerText = 'Randomized Rotation: On';
+        document.getElementById('randomRotBtn').innerText = 'Random Rotation: On';
     } else if (randomizedRot) {
         randomizedRot = false;
-        document.getElementById('randomRotBtn').innerText = 'Randomized Rotation: Off';
+        document.getElementById('randomRotBtn').innerText = 'Random Rotation: Off';
+    }
+
+    if (!generating) {
+        if (!doneLoading) switchSelected();
+
+        ctx5.clearRect(0, 0, canvas.width, canvas.height);
+
+        finalX = x - defWidth / 2;
+        finalY = y - defWidth / 2;
+        finalW = defWidth;
+        finalH = defWidth;
+
+        place(ctx5);
+        if (following) place(ctx);
     }
 }
 
@@ -287,8 +345,8 @@ canvas5.addEventListener('mousemove', function (event) {
 
         ctx5.clearRect(0, 0, canvas.width, canvas.height);
 
-        let x = event.pageX - canvas.offsetLeft;
-        let y = event.pageY - canvas.offsetTop;
+        x = event.pageX - canvas.offsetLeft;
+        y = event.pageY - canvas.offsetTop;
 
         point2 = [x, y];
 
@@ -334,6 +392,8 @@ function place(thisCtx) {
     thisCtx.drawImage(d, -finalW / 2, -finalH / 2, finalW, finalH);
     thisCtx.rotate(-defRot * Math.PI / 180);
     thisCtx.translate(-finalX - (finalW / 2), -finalY - (finalH / 2));
+    console.log(d, finalW, finalH, finalX, finalY);
+    console.log("—————————");
 }
 
 function randomSize() {
@@ -393,4 +453,24 @@ function download() {
     link.download = 'my-bunnies.png';
     link.href = document.getElementById('canvas').toDataURL();
     link.click();
+}
+
+document.body.onkeyup = function (event) {
+    if (event.keyCode == 27) {
+        document.getElementById('hideBtn').click();
+    } else if (event.keyCode == 49) {
+        document.getElementById('sizeBtn').click();
+    } else if (event.keyCode == 50) {
+        document.getElementById('rotationBtn').click();
+    } else if (event.keyCode == 51) {
+        document.getElementById('randomSizeBtn').click();
+    } else if (event.keyCode == 52) {
+        document.getElementById('randomRotBtn').click();
+    } else if (event.keyCode == 53) {
+        document.getElementById('genBtn').click();
+    } else if (event.keyCode == 54) {
+        document.getElementById('followBtn').click();
+    } else if (event.keyCode == 55) {
+        document.getElementById('downloadBtn').click();
+    }
 }
