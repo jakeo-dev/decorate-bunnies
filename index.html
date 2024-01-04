@@ -344,7 +344,7 @@
 
     </div>
 
-    <div class='hidden md:flex absolute z-[60] gap-3 m-3 transition-all' id='optionsDiv'>
+    <div class='hidden md:flex absolute z-[60] gap-3 px-3 mt-3 transition-all' id='optionsDiv'>
         <button
             class='leading-none bg-gray-100/90 hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90 border-gray-400/90 border-2 text-gray-600 rounded-md px-2.5 py-1 transition-all'
             onclick='toggleB()' id='hideBtn'><i id='hideI' class='fa-solid fa-angle-left text-xl p-0 m-0'
@@ -366,6 +366,9 @@
         <button
             class='leading-none text-lg bg-gray-100/90 hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90 border-gray-400/90 border-2 text-gray-600 rounded-md px-3 py-2 transition-all'
             id='genBtn' onclick='toggleGen()'>Start Generation</button>
+        <button
+            class='leading-none text-lg bg-gray-100/90 hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90 border-gray-400/90 border-2 text-gray-600 rounded-md px-3 py-2 transition-all'
+            id='followBtn' onclick='toggleFollow()'>Follow Cursor: Off</button>
         <button
             class='leading-none text-lg bg-gray-100/90 hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90 border-gray-400/90 border-2 text-gray-600 rounded-md px-2.5 py-1 transition-all'
             onclick='download()' id='downloadBtn'><i id='downloadI' class='fa-solid fa-floppy-disk text-xl p-0'

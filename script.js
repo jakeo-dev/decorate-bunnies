@@ -4,6 +4,7 @@ let defRot = 0;
 let randomizedSize = false;
 let randomizedRot = false;
 let generating = false;
+let following = false;
 
 let canvas = document.getElementById('canvas');
 let canvas4 = document.getElementById('canvas4');
@@ -156,7 +157,7 @@ function changeSize() {
 }
 
 function changeRotation() {
-    defRot += 15;
+    defRot += 30;
     document.getElementById('rotationBtn').innerText = 'Rotation: ' + defRot + '°';
 
     if (defRot >= 360) {
@@ -255,6 +256,16 @@ function toggleGen() {
     }
 }
 
+function toggleFollow() {
+    if (document.getElementById('followBtn').innerText == 'Follow Cursor: Off') {
+        following = true;
+        document.getElementById('followBtn').innerText = 'Follow Cursor: On';
+    } else {
+        following = false;
+        document.getElementById('followBtn').innerText = 'Follow Cursor: Off';
+    }
+}
+
 function calcDistance(x1, y1, x2, y2) {
     return Math.sqrt(((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2)));
 }
@@ -281,7 +292,7 @@ canvas5.addEventListener('mousemove', function (event) {
 
         point2 = [x, y];
 
-        if (calcDistance(point1[0], point1[1], point2[0], point2[1]) > 10) {
+        if (calcDistance(point1[0], point1[1], point2[0], point2[1]) > 5) {
             farEnough = true;
             /* ctx.beginPath();
             ctx.arc(x, y, 50, 0, 2 * Math.PI);
@@ -308,6 +319,7 @@ canvas5.addEventListener('mousemove', function (event) {
 
         if (farEnough) point1 = point2;
         place(ctx5);
+        if (following) place(ctx);
     }
 }, false);
 
@@ -331,7 +343,7 @@ function randomSize() {
 }
 
 function randomRot() {
-    defRot = Math.floor(Math.random() * 24) * 15;
+    defRot = Math.floor(Math.random() * 12) * 30;
     changeRotation();
 }
 
