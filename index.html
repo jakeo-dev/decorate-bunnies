@@ -29,7 +29,7 @@
     <div id='modal'
         class='flex md:hidden bg-black/50 justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div class='relative text-xl bg-gray-200 rounded-lg w-fit shadow-sm px-9 py-7'>
-            <h1 class='text-gray-700 max-w-96'>This website is not built for smaller screens yet. Switch to a larger
+            <h1 class='text-gray-700 max-w-96'>This website is not designed for smaller screens yet. Switch to a larger
                 device to use it.</h1>
         </div>
     </div>
@@ -45,16 +45,16 @@
 
         <select id='switchSelected' onchange='switchSelected()'
             class='button sticky top-0 left-0 px-1.5 py-1.5 pr-0 block float-left text-sm w-min rounded-md border-l-2 hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90 mb-3'>
-            <optgroup label='Select a collection'>
+            <optgroup label='Select a filter'>
                 <option value='selectBunny'>Featured (all)</option>
                 <option value='colorful2022'>Colorful 2022</option>
-                <option value='solidColorful'>Solid colorful</option>
                 <option value='solid'>Solid</option>
+                <option value='solidColorful'>Solid colorful</option>
+                <option value='solidGradient'>Solid gradient</option>
                 <option value='holiday'>Holiday</option>
                 <option value='costumed'>Costumed</option>
                 <option value='halloween'>Halloween</option>
                 <option value='christmas'>Christmas</option>
-            </optgroup>
             </optgroup>
         </select>
 
@@ -249,7 +249,7 @@
                     src='bunnies/solid-stripes-christmas-bunny.png'>
             </button>
 
-            <button class='selectBunny solid hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+            <button class='selectBunny solid solidGradient hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
                 id='solid-gradient-blurple-bunny' onclick='select("solid-gradient-blurple-bunny")'> <img
                     id='bunnies/solid-gradient-blurple-bunny.png' width='72' height='72'
                     src='bunnies/solid-gradient-blurple-bunny.png'>
@@ -260,7 +260,7 @@
                     width='72' height='72' src='bunnies/solid-earth-bunny.png'>
             </button>
 
-            <button class='selectBunny solid hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+            <button class='selectBunny solid solidGradient hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
                 id='solid-gradient-orange-black-bunny' onclick='select("solid-gradient-orange-black-bunny")'> <img
                     id='bunnies/solid-gradient-orange-black-bunny.png' width='72' height='72'
                     src='bunnies/solid-gradient-orange-black-bunny.png'>
@@ -288,13 +288,13 @@
                     height='72' src='bunnies/witch-bunny.png'>
             </button>
 
-            <button class='selectBunny solid hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+            <button class='selectBunny solid solidGradient hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
                 id='solid-gradient-yellow-blue-bunny' onclick='select("solid-gradient-yellow-blue-bunny")'> <img
                     id='bunnies/solid-gradient-yellow-blue-bunny.png' width='72' height='72'
                     src='bunnies/solid-gradient-yellow-blue-bunny.png'>
             </button>
 
-            <button class='selectBunny solid hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+            <button class='selectBunny solid solidGradient hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
                 id='solid-gradient-blue-gray-bunny' onclick='select("solid-gradient-blue-gray-bunny")'> <img
                     id='bunnies/solid-gradient-blue-gray-bunny.png' width='72' height='72'
                     src='bunnies/solid-gradient-blue-gray-bunny.png'>
@@ -305,13 +305,13 @@
                     height='72' src='bunnies/sunny-bunny.png'>
             </button>
 
-            <button class='selectBunny solid hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+            <button class='selectBunny solid solidGradient hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
                 id='solid-gradient-yellow-purple-bunny' onclick='select("solid-gradient-yellow-purple-bunny")'> <img
                     id='bunnies/solid-gradient-yellow-purple-bunny.png' width='72' height='72'
                     src='bunnies/solid-gradient-yellow-purple-bunny.png'>
             </button>
 
-            <button class='selectBunny solid hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+            <button class='selectBunny solid solidGradient hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
                 id='solid-gradient-blue-black-bunny' onclick='select("solid-gradient-blue-black-bunny")'> <img
                     id='bunnies/solid-gradient-blue-black-bunny.png' width='72' height='72'
                     src='bunnies/solid-gradient-blue-black-bunny.png'>
@@ -334,10 +334,34 @@
                     src='bunnies/cornucopia-of-bunnies.png'>
             </button>
 
+            <button class='selectBunny solid holiday hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-autumn-leaves-bunny' onclick='select("solid-autumn-leaves-bunny")'> <img
+                    id='bunnies/solid-autumn-leaves-bunny.png' width='72' height='72'
+                    src='bunnies/solid-autumn-leaves-bunny.png'>
+            </button>
+
             <button
                 class='selectBunny holiday costumed christmas hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
                 id='snowman-bunny' onclick='select("snowman-bunny")'> <img id='bunnies/snowman-bunny.png' width='72'
                     height='72' src='bunnies/snowman-bunny.png'>
+            </button>
+
+            <button class='selectBunny solid solidGradient hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-gradient-gold-bunny' onclick='select("solid-gradient-gold-bunny")'> <img
+                    id='bunnies/solid-gradient-gold-bunny.png' width='72' height='72'
+                    src='bunnies/solid-gradient-gold-bunny.png'>
+            </button>
+
+            <button class='selectBunny solid solidGradient hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-gradient-red-pink-bunny' onclick='select("solid-gradient-red-pink-bunny")'> <img
+                    id='bunnies/solid-gradient-red-pink-bunny.png' width='72' height='72'
+                    src='bunnies/solid-gradient-red-pink-bunny.png'>
+            </button>
+
+            <button class='selectBunny solid solidGradient hover:enabled:bg-gray-200/90 active:enabled:bg-gray-300/90'
+                id='solid-gradient-gray-bunny' onclick='select("solid-gradient-gray-bunny")'> <img
+                    id='bunnies/solid-gradient-gray-bunny.png' width='72' height='72'
+                    src='bunnies/solid-gradient-gray-bunny.png'>
             </button>
 
         </div>
@@ -384,10 +408,6 @@
 
         <canvas id='canvas' class='absolute top-0 right-0 z-10'>
             <!-- draw canvas -->
-        </canvas>
-
-        <canvas id='canvas4' class='absolute top-0 right-0'>
-            <!-- bg canvas -->
         </canvas>
 
     </div>

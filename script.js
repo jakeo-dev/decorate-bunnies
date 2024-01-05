@@ -7,21 +7,21 @@ let generating = false;
 let following = false;
 
 let canvas = document.getElementById('canvas');
-let canvas4 = document.getElementById('canvas4');
+//let canvas4 = document.getElementById('canvas4');
 let canvas5 = document.getElementById('canvas5');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-canvas4.width = window.innerWidth;
-canvas4.height = window.innerHeight;
+//canvas4.width = window.innerWidth;
+//canvas4.height = window.innerHeight;
 canvas5.width = window.innerWidth;
 canvas5.height = window.innerHeight;
 let ctx = canvas.getContext('2d');
-let ctx4 = canvas4.getContext('2d');
+//let ctx4 = canvas4.getContext('2d');
 let ctx5 = canvas5.getContext('2d');
 
 let bg = 0;
 function switchBg() {
-    ctx4.clearRect(0, 0, canvas.width, canvas.height);
+    //ctx4.clearRect(0, 0, canvas.width, canvas.height);
 
     if (bg == 0) {
         document.body.classList.remove('bg-white');
@@ -350,7 +350,7 @@ canvas5.addEventListener('mousemove', function (event) {
 
         point2 = [x, y];
 
-        if (calcDistance(point1[0], point1[1], point2[0], point2[1]) > 5) {
+        if (calcDistance(point1[0], point1[1], point2[0], point2[1]) > 0) {
             farEnough = true;
             /* ctx.beginPath();
             ctx.arc(x, y, 50, 0, 2 * Math.PI);
@@ -392,8 +392,6 @@ function place(thisCtx) {
     thisCtx.drawImage(d, -finalW / 2, -finalH / 2, finalW, finalH);
     thisCtx.rotate(-defRot * Math.PI / 180);
     thisCtx.translate(-finalX - (finalW / 2), -finalY - (finalH / 2));
-    console.log(d, finalW, finalH, finalX, finalY);
-    console.log("—————————");
 }
 
 function randomSize() {
@@ -422,6 +420,7 @@ function switchSelected() {
     }
     bunniesArray = bunniesArray.filter(e => e !== 'random');
     document.getElementById('random').classList.remove('hidden');
+    document.getElementById('optionsDiv').style.left = document.getElementById('bunnySelector').offsetWidth + 'px';
 }
 
 function select(selectedB) {
